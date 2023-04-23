@@ -1,25 +1,33 @@
 import React, { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const Home = lazy(() => import('../pages/home/index'));
-const About = lazy(() => import('../pages/about/index'));
+const classScheduleDemo = lazy(() => import('../pages/classScheduleDemo/index'));
 
 const routes: any[] = [
-  {
-    title: '首页',
-    redirect: '/home',
-    component: () => {
-      return <div>123</div>;
-    },
-  },
   {
     title: '首页',
     path: '/home',
     component: Home,
   },
   {
-    title: '关于',
-    path: '/about',
-    component: About,
+    title: '课表demo',
+    path: '/classScheduleDemo',
+    component: classScheduleDemo,
+  },
+  {
+    title: '首页',
+    path: '/',
+    component: () => {
+      return <Navigate to={'/home'} replace />;
+    },
+  },
+  {
+    title: '404',
+    path: '/*',
+    component: () => {
+      return <div>404</div>;
+    },
   },
 ];
 

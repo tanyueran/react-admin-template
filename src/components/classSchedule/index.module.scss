@@ -1,0 +1,202 @@
+$col1-width: 80px; // 第一列的宽度
+$ro1-height: 98px; // 第一行的高度
+$other-width: 200px; // 其余列款
+$item-height: 122px; // 一个具体明细高度
+$gap: 12px; // 间隔
+
+// 所有的格子
+.cell {
+  background: #fafafa;
+}
+
+// 最外层框
+.container {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  width: auto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #555;
+  padding-top: 12px;
+  padding-bottom: 18px;
+}
+
+// 第一行
+.header {
+  height: $ro1-height;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: $gap;
+
+  > div {
+    border: 1px solid #e8e8e8;
+
+    &:not(:first-child) {
+      padding: 12px;
+    }
+  }
+}
+
+// 表头
+.title {
+  position: relative;
+  width: $col1-width;
+  flex-shrink: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-color: #e8e8e8;
+    height: 0.5px;
+    top: 50%;
+    rotate: 51deg;
+    scale: 1.6;
+  }
+
+  > :first-child {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  > :last-child {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+// 第一行的班级
+.class-wrapper {
+  width: $other-width;
+  flex-shrink: 0;
+  background: url('../../../../../assets/classes-icon-1.png') no-repeat 12px 12px;
+  background-size: 24px 24px;
+  padding-left: 40px !important;
+  position: relative;
+
+  // 班级名称
+  > :first-child {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #333;
+    margin-bottom: 8px;
+    overflow: hidden;
+    display: -webkit-box; // 将对象作为弹性伸缩盒子模型显示;
+    text-overflow: ellipsis; // 溢出部分用省略号代替
+    -webkit-line-clamp: 2; // 设置文本显示两行
+    -webkit-box-orient: vertical; // 从上到下排列子元素;
+    white-space: normal;
+  }
+
+  // 删除icon
+  > span {
+    position: absolute;
+    font-size: 14px;
+    top: -7px;
+    right: -7px;
+    color: #666;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+// 内容框
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  flex-shrink: 0;
+}
+
+// 一天的内容框
+.day-content-wrapper {
+  display: flex;
+  gap: $gap;
+  flex-shrink: 0;
+}
+
+// 日期样式
+.day-wrapper {
+  width: $col1-width;
+  border: 1px solid #e8e8e8;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// 一天具体的明细
+.day-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: $other-width;
+  gap: $gap;
+  flex-shrink: 0;
+  
+  /* stylelint-disable-next-line no-descending-specificity */
+  > div {
+    border: 1px solid #e8e8e8;
+    height: $item-height;
+    padding: 12px 12px 0;
+    overflow: hidden;
+  }
+}
+
+// 一个具体的明细
+.item-wrapper {
+  position: relative;
+
+  > :first-child {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  > div:not(:first-child) {
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #555;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    > span {
+      margin-right: 4px;
+    }
+  }
+}
+
+// 删除单个项
+.delete-item-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  cursor: pointer;
+  color: #999;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+// 错误
+.error-text {
+  color: #d70c1b !important;
+}
